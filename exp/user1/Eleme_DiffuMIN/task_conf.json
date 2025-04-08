@@ -8,7 +8,7 @@
     "test_data_end": 20220408,
     "sample_rate": 0.1,
     "model_path": "viewfs://XXX/model/Eleme",
-    "model_name": "Eleme_SUAN",
+    "model_name": "Eleme_DiffuMIN",
     "model_class_name": "model.test_dnn.testDNN",
     "deep_layers": [1024, 512, 256],
     "out_dim": 1,
