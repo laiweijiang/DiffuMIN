@@ -288,14 +288,13 @@ class Long_term_DiffuMIN(InputBase):
         orthogonal_channels = tf.transpose(orthogonal_channels, [0, 2, 1])
         orthogonal_channels = tf.nn.l2_normalize(orthogonal_channels, axis=-1)
 
-        self.batch_size = self.params['batch_size']
         variable_scope = "Diffusion"
         with tf.variable_scope(variable_scope, reuse=tf.AUTO_REUSE):
             if self.is_training:
                 self.loss = []
                 for i in range(self.channel_num):
                     # Random timestep selection
-                    ts = tf.random_uniform(shape=(self.batch_size,), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
+                    ts = tf.random_uniform(shape=(tf.shape(orthogonal_channels)[0],), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
                     h_target = tf.expand_dims(orthogonal_channels[:, i, :], 1)
 
                     loss_i, predicted_x_i = self.p_losses(aggregated_repr_norm, i, h_target, ts, loss_type='l2')
@@ -455,7 +454,7 @@ class Long_term_DiffuMIN(InputBase):
         # Sampling method for channels in diffusion model
         x = channels[:, i, :]
         x = tf.expand_dims(x, axis=1)
-        t = tf.random_uniform(shape=(self.batch_size,), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
+        t = tf.random_uniform(shape=(tf.shape(x)[0],), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
         noise = tf.random.normal(tf.shape(x))
         x = self.q_sample(x_start=x, t=t, noise=noise)
 
@@ -856,14 +855,13 @@ class Eleme_DiffuMIN(InputBase):
         orthogonal_channels = tf.transpose(orthogonal_channels, [0, 2, 1])
         orthogonal_channels = tf.nn.l2_normalize(orthogonal_channels, axis=-1)
 
-        self.batch_size = self.params['batch_size']
         variable_scope = "Diffusion"
         with tf.variable_scope(variable_scope, reuse=tf.AUTO_REUSE):
             if self.is_training:
                 self.loss = []
                 for i in range(self.channel_num):
                     # Random timestep selection
-                    ts = tf.random_uniform(shape=(self.batch_size,), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
+                    ts = tf.random_uniform(shape=(tf.shape(orthogonal_channels)[0],), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
                     h_target = tf.expand_dims(orthogonal_channels[:, i, :], 1)
 
                     loss_i, predicted_x_i = self.p_losses(aggregated_repr_norm, i, h_target, ts, loss_type='l2')
@@ -1027,7 +1025,7 @@ class Eleme_DiffuMIN(InputBase):
         # Sampling method for channels in diffusion model
         x = channels[:, i, :]
         x = tf.expand_dims(x, axis=1)
-        t = tf.random_uniform(shape=(self.batch_size,), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
+        t = tf.random_uniform(shape=(tf.shape(x)[0],), minval=0, maxval=self.params['timesteps'], dtype=tf.int32)
         noise = tf.random.normal(tf.shape(x))
         x = self.q_sample(x_start=x, t=t, noise=noise)
 
