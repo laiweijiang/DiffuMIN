@@ -114,9 +114,9 @@ class MLP(object):
 
 
 
-class Long_term_DiffuMIN(InputBase):
+class Mix5k_DiffuMIN(InputBase):
     def __init__(self, data_struct, params, is_training, hashtable, ptable_lookup):
-        super(Long_term_DiffuMIN, self).__init__(data_struct, params, is_training, hashtable, ptable_lookup)
+        super(Mix5k_DiffuMIN, self).__init__(data_struct, params, is_training, hashtable, ptable_lookup)
 
         # Base configuration
         self.seq_len = self.params['seq_len']
