@@ -12,7 +12,7 @@
 #### 2. **OMIE (Orthogonal Multi-Interest Extractor)**
 - Decompose target item into orthogonal interests
 - **Behavior routing**: Assign each behavior to top-1 interest channel
-- **Channel filtering**: Keep top-$p$% behaviors per channel
+- **Channel filtering**: Keep top-p% behaviors per channel
 
 #### 3. **DMIG (Diffusion Multi-Interest Generator)**
 - **Forward process**: Add noise to aggregated interests
