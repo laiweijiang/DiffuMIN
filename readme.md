@@ -1,18 +1,3 @@
-core config：
-
-./exp/user1/Long_term_DiffuMIN
-
-./exp/user1/Eleme_DiffuMIN
-
-core code：
-./handle_layer/handle_lib/handle_rec_unit.py 
-class Long_term_DiffuMIN
-class Eleme_DiffuMIN
-
-
-
-
-
 # Modeling Long-term User Behaviors with Diffusion-driven Multi-interest Network for CTR Prediction
 
 > **A CTR model inspired by multi-interest and diffusion to model long-term user behaviors**  
