@@ -5,26 +5,26 @@
 
 ## 🧱 Model Architecture
 
-### DiffuMIN (4-Stage Design)
+### DiffuMIN
+![img.png](img.png)
 
-📌 Input:  User behaviors + candidates  
-
-#### 2. **OMIE (Orthogonal Multi-Interest Extractor)**
+#### 1. **OMIE (Orthogonal Multi-Interest Extractor)**
 - Decompose target item into orthogonal interests
 - **Behavior routing**: Assign each behavior to top-1 interest channel
 - **Channel filtering**: Keep top-p% behaviors per channel
 
-#### 3. **DMIG (Diffusion Multi-Interest Generator)**
+#### 2. **DMIG (Diffusion Multi-Interest Generator)**
 - **Forward process**: Add noise to aggregated interests
 - **Reverse process**: Denoise using Transformer (conditioned on context + channel)
 - **Efficient sampling**: Start from `r_i,t` (not noise)
 
-#### 4. **CMIC (Contrastive Multi-Interest Calibrator)**
+#### 3. **CMIC (Contrastive Multi-Interest Calibrator)**
 - **Positive pairs**: `(r_i, r*_i)` (same user)
 - **Negative pairs**: `(r_i, r*_j)` (different users)
 - **Loss**: `L_cl = -log[exp(sim(r_i, r*_i)/τ) / Σ exp(sim(r_i, r*_j)/τ)]`
 
-> 📌 **Output**: `P(click) = σ(MLP([r, r*, e_other, e*_s]))`
+> 📌 Input: User behaviors + candidate  
+> 📌 Output: `P(click) = σ(MLP([r, r*, e_other, e*_s]))`
 
 ## 📁 Open-Sourced Components
 
